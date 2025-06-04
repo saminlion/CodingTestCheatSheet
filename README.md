@@ -15,20 +15,6 @@ This project helps developers quickly look up algorithm templates, syntax summar
 
 ---
 
-## 🗂️ Project Structure
-
-coding-cheatsheet/
-├── index.html # Main HTML file
-├── /css/
-│ └── style.css # Styles
-├── /js/
-│ └── script.js # Tab switch, fold toggles
-├── /code/
-│ ├── csharp.js # C# code snippets
-│ └── cpp.js # C++ code snippets
-└── README.md
----
-
 ## 🖼️ Preview
 
 📺 **Demo (Optional)**  
