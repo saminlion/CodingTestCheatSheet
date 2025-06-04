@@ -27,11 +27,6 @@ coding-cheatsheet/
 │ ├── csharp.js # C# code snippets
 │ └── cpp.js # C++ code snippets
 └── README.md
-
-yaml
-Copy
-Edit
-
 ---
 
 ## 🖼️ Preview
