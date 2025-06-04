@@ -1,0 +1,25 @@
+// nums 배열에서 중복 없이 모든 순열을 생성하는 백트래킹 함수
+// path는 현재까지 선택된 숫자 경로
+// used는 각 숫자의 사용 여부를 기록
+// depth는 현재 선택된 숫자의 개수
+
+void Backtrack(vector<int>& path, vector<bool>& used, int depth) {
+    // 종료 조건: depth가 n이면 하나의 완성된 순열
+    if (depth == n) {
+        result.push_back(path); // 완성된 경로를 결과에 추가
+        return;
+    }
+
+    // 0 ~ n-1 인덱스의 숫자 중 아직 사용되지 않은 숫자를 선택
+    for (int i = 0; i < n; i++) {
+        if (used[i]) continue;   // 이미 선택된 숫자는 건너뜀
+
+        used[i] = true;          // 사용 처리
+        path.push_back(nums[i]); // 경로에 추가
+
+        Backtrack(path, used, depth + 1); // 다음 숫자 선택을 위해 재귀 호출
+
+        path.pop_back();         // 백트래킹: 마지막에 넣은 숫자 제거
+        used[i] = false;         // 사용 여부 초기화
+    }
+}

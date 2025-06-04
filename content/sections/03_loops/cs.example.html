@@ -1,0 +1,21 @@
+// 주어진 배열에서 짝수와 홀수의 개수를 각각 세어 출력하는 예제
+// 입력: 정수 배열
+// 출력: 짝수 개수, 홀수 개수
+
+using System;
+
+class Program {
+    static void Main() {
+        int[] arr = {1, 2, 3, 4, 5, 6};
+        int even = 0, odd = 0;
+
+        // 배열을 순회하면서 짝수/홀수를 분류
+        foreach (int x in arr) {
+            if (x % 2 == 0) even++; // 짝수이면 even 증가
+            else odd++;             // 홀수이면 odd 증가
+        }
+
+        // 결과 출력
+        Console.WriteLine($"짝수: {even}, 홀수: {odd}");
+    }
+}

@@ -1,0 +1,27 @@
+// BFS를 이용한 그래프 탐색 예제
+// graph: 인접 리스트 형태의 그래프
+// visited: 각 노드의 방문 여부
+// start: 탐색 시작 노드
+
+#include <vector>
+#include <queue>
+using namespace std;
+
+vector<vector<int>> graph(n);       // 인접 리스트 (노드 n개)
+vector<bool> visited(n, false);     // 방문 여부 배열 false로 초기화
+
+queue<int> q;                       // BFS를 위한 큐 생성
+visited[start] = true;              // 시작 노드 방문 처리
+q.push(start);                      // 큐에 시작 노드 삽입
+
+while (!q.empty()) {
+    int current = q.front(); q.pop();  // 큐에서 현재 노드 꺼냄
+
+    // 현재 노드에 연결된 모든 이웃 노드 순회
+    for (int next : graph[current]) {
+        if (!visited[next]) {         // 방문하지 않은 노드일 경우
+            visited[next] = true;     // 방문 처리
+            q.push(next);             // 큐에 삽입하여 다음 탐색 대상으로 추가
+        }
+    }
+}

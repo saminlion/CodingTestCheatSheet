@@ -1,0 +1,19 @@
+#include <vector>
+using namespace std;
+
+// 원본 배열
+vector<int> arr = {1, 2, 3, 4, 5};
+
+// 누적 합 배열 (길이는 arr보다 1 크며, prefix[0] = 0 으로 초기화)
+// prefix[i] = arr[0] + arr[1] + ... + arr[i-1]
+vector<int> prefix(arr.size() + 1, 0);
+
+// 누적 합 계산
+for (int i = 1; i <= arr.size(); i++) {
+    prefix[i] = prefix[i - 1] + arr[i - 1];
+}
+
+// 구간 [2, 4]의 합 계산 (0-based 인덱스 기준)
+// 즉, arr[2] + arr[3] + arr[4]
+// → prefix[5] - prefix[2] = (arr[0] ~ arr[4]) - (arr[0] ~ arr[1])
+int sum = prefix[4 + 1] - prefix[2];  // 결과: 3 + 4 + 5 = 12

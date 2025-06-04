@@ -1,0 +1,37 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    // 입력 데이터
+    int n = 5; // 배열 크기
+    int m = 3; // 쿼리 개수
+    vector<int> arr = {10, 20, 30, 40, 50};
+
+    // 각 쿼리는 [left, right] 형태 (1-based 인덱스 기준)
+    vector<pair<int, int>> queries = {
+        {1, 3}, // 10 + 20 + 30 = 60
+        {2, 4}, // 20 + 30 + 40 = 90
+        {1, 5}  // 10 + 20 + 30 + 40 + 50 = 150
+    };
+
+    // 누적합(prefix sum) 배열 선언 (0번째 인덱스는 항상 0으로 유지)
+    vector<int> prefix(n + 1, 0);
+
+    // 누적합 계산: prefix[i] = arr[0] + ... + arr[i-1]
+    for (int i = 1; i <= n; i++) {
+        prefix[i] = prefix[i - 1] + arr[i - 1];
+    }
+
+    // 쿼리 처리: [left, right] 범위의 합을 빠르게 계산
+    for (int i = 0; i < m; i++) {
+        int left = queries[i].first;   // 시작 인덱스 (1-based)
+        int right = queries[i].second; // 끝 인덱스 (1-based)
+
+        // 구간 합 계산: prefix[right] - prefix[left - 1]
+        int sum = prefix[right] - prefix[left - 1];
+        cout << sum << '\n'; // 결과 출력
+    }
+
+    return 0;
+}

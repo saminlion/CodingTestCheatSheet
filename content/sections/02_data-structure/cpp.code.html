@@ -1,0 +1,25 @@
+// 배열 (고정 크기)
+int arr[n];  // 또는 vector<int> arr(n); ← 동적 할당 시
+
+// 벡터 (동적 배열)
+vector<int> list;
+
+// 큐
+queue<int> q;
+
+// 스택
+stack<int> s;
+
+// 맵 (Key: string, Value: int)
+unordered_map<string, int> dict;  // hash 기반
+// 또는 map<string, int> dict;    // 정렬 필요 시
+
+// 집합 (중복 없는 값 저장)
+unordered_set<int> set;
+// 또는 set<int> set;             // 자동 정렬 필요 시
+
+// 우선순위 큐 (기본: 최대 힙)
+priority_queue<int> pq;
+
+// 최소 힙으로 사용할 경우
+priority_queue<int, vector<int>, greater<int>> min_pq;

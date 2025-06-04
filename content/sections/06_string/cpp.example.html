@@ -1,0 +1,40 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <cctype>
+
+int main() {
+    // 입력 문자열 (한 줄)
+    std::string s;
+    std::cin >> s;
+
+    // 입력 문자열을 모두 대문자로 변환 (대소문자 구분 X)
+    std::transform(s.begin(), s.end(), s.begin(), ::toupper);
+
+    // 알파벳 개수만큼 배열 생성 (A~Z → 인덱스 0~25)
+    std::vector<int> count(26, 0);
+
+    // 각 문자에 대해 빈도수 카운팅
+    for (char c : s) {
+        if ('A' <= c && c <= 'Z') {
+            count[c - 'A']++;  // 'A'를 기준으로 인덱스를 매핑
+        }
+    }
+
+    // 최댓값(가장 많이 등장한 횟수) 구하기
+    int maxCount = *std::max_element(count.begin(), count.end());
+
+    // 최댓값을 가진 문자의 개수 세기
+    int maxFreq = std::count(count.begin(), count.end(), maxCount);
+
+    if (maxFreq > 1) {
+        std::cout << "?" << std::endl;  // 동점자가 2개 이상일 경우
+    } else {
+        // 유일한 최댓값 인덱스를 문자로 변환하여 출력
+        int idx = std::distance(count.begin(), std::max_element(count.begin(), count.end()));
+        std::cout << static_cast<char>('A' + idx) << std::endl;
+    }
+
+    return 0;
+}

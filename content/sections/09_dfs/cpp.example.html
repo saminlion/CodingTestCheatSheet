@@ -1,0 +1,50 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+// DFS를 사용하여 무방향 그래프의 연결 요소 개수를 구하는 예제 코드
+
+vector<vector<int>> graph;   // 인접 리스트
+vector<bool> visited;        // 방문 여부 배열
+
+// DFS 함수 정의
+void DFS(int node) {
+    if (visited[node]) return;    // 이미 방문한 노드면 리턴
+    visited[node] = true;         // 현재 노드 방문 처리
+
+    // 인접 노드들에 대해 DFS 재귀 호출
+    for (int next : graph[node]) {
+        DFS(next);
+    }
+}
+
+int main() {
+    int n, m;
+    cin >> n >> m; // 정점 수, 간선 수
+
+    graph.resize(n);
+    visited.assign(n, false);
+
+    // 간선 정보 입력 (무방향 그래프이므로 양쪽 추가)
+    for (int i = 0; i < m; i++) {
+        int u, v;
+        cin >> u >> v;
+        graph[u].push_back(v);
+        graph[v].push_back(u);
+    }
+
+    int count = 0; // 연결 요소 개수 카운터
+
+    // 모든 정점에 대해 DFS 수행
+    for (int i = 0; i < n; i++) {
+        if (!visited[i]) {
+            DFS(i);    // 새로운 연결 요소 발견
+            count++;   // 연결 요소 개수 증가
+        }
+    }
+
+    // 최종 연결 요소 개수 출력
+    cout << count << endl;
+
+    return 0;
+}

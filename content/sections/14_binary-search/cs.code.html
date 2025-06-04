@@ -1,0 +1,21 @@
+// 정렬된 배열에서 특정 값을 찾는 이진 탐색 함수
+// 입력: 정수 배열 arr (오름차순 정렬되어 있음), 찾고자 하는 값 target
+// 출력: target이 존재하는 인덱스 (없으면 -1)
+int BinarySearch(int[] arr, int target) {
+    int left = 0;                  // 탐색 구간의 왼쪽 끝 인덱스
+    int right = arr.Length - 1;   // 탐색 구간의 오른쪽 끝 인덱스
+
+    // 왼쪽 인덱스가 오른쪽보다 작거나 같을 때까지 반복
+    while (left <= right) {
+        int mid = (left + right) / 2; // 중간 인덱스 계산
+
+        if (arr[mid] == target)
+            return mid;              // 값을 찾은 경우 해당 인덱스 반환
+        else if (arr[mid] < target)
+            left = mid + 1;          // 찾는 값이 mid보다 크면 오른쪽 반 탐색
+        else
+            right = mid - 1;         // 찾는 값이 mid보다 작으면 왼쪽 반 탐색
+    }
+
+    return -1; // 값이 배열에 없는 경우
+}

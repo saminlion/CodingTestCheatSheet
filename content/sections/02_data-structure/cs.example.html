@@ -1,0 +1,24 @@
+// 주어진 문자열 배열에서 각 단어의 빈도수를 세어 출력하는 예제
+// 입력: 문자열 배열
+// 출력: 각 단어와 해당 단어의 등장 횟수
+
+using System;
+using System.Collections.Generic;
+
+class Program {
+    static void Main() {
+        string[] words = { "apple", "banana", "apple", "cherry" };
+        var dict = new Dictionary<string, int>();
+
+        // 각 단어의 빈도수를 딕셔너리에 저장
+        foreach (var word in words) {
+            if (!dict.ContainsKey(word))
+                dict[word] = 0; // 처음 등장한 단어는 0으로 초기화
+            dict[word]++;       // 해당 단어의 등장 횟수 증가
+        }
+
+        // 결과 출력
+        foreach (var kv in dict)
+            Console.WriteLine($"{kv.Key}: {kv.Value}");
+    }
+}

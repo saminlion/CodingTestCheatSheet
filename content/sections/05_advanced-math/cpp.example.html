@@ -1,0 +1,46 @@
+// 다양한 심화 수학 함수를 사용하는 예제
+// - GCD, LCM 계산
+// - 소수 판별
+// - 소인수 분해
+// - 진법 변환
+// - 분수 덧셈 및 기약 분수 계산
+
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+
+int main() {
+    // ✅ GCD, LCM 테스트
+    int a = 6, b = 8;
+    int gcd = GCD(a, b);
+    int lcm = LCM(a, b);
+    cout << "GCD: " << gcd << ", LCM: " << lcm << endl;
+    // 출력: GCD: 2, LCM: 24
+
+    // ✅ 소수 판별
+    int n = 17;
+    cout << "IsPrime: " << (IsPrime(n) ? "True" : "False") << endl;
+    // 출력: True
+
+    // ✅ 소인수 분해
+    vector<int> factors = PrimeFactors(60);
+    cout << "Factors: [";
+    for (size_t i = 0; i < factors.size(); ++i) {
+        cout << factors[i];
+        if (i < factors.size() - 1) cout << ",";
+    }
+    cout << "]" << endl;
+    // 출력: [2,2,3,5]
+
+    // ✅ 진법 변환
+    cout << ToBaseN(31, 2) << endl;
+    // 출력: 11111
+
+    // ✅ 분수 덧셈 및 기약분수 변환
+    auto [num, denom] = AddFractions(1, 3, 1, 6);
+    cout << "{" << num << ", " << denom << "}" << endl;
+    // 출력: {1, 2}
+
+    return 0;
+}

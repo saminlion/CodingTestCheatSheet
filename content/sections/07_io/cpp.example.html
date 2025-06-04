@@ -1,0 +1,25 @@
+#include <iostream>
+#include <string>
+#include <sstream>
+using namespace std;
+
+int main() {
+    // 고속 입출력 설정
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int n;
+    cin >> n;         // 첫 번째 줄: 정수 입력
+    cin.ignore();     // 개행 문자 제거
+
+    string line;
+    getline(cin, line);         // 두 번째 줄: 문자열 한 줄 입력
+
+    stringstream ss(line);
+    string token;
+    while (ss >> token) {
+        cout << token << '\n';  // 각 토큰을 줄 단위로 출력
+    }
+
+    return 0;
+}

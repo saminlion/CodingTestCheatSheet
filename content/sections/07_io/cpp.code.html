@@ -1,0 +1,18 @@
+auto cinStream = std::cin;
+auto coutStream = std::cout;
+
+int n;
+cinStream >> n;
+
+std::vector<std::string> nums;
+{
+    std::string line;
+    std::getline(cinStream >> std::ws, line);
+    std::stringstream ss(line);
+    std::string token;
+    while (ss >> token)
+        nums.push_back(token);
+}
+
+for (const auto& x : nums)
+    coutStream << x << '\n';

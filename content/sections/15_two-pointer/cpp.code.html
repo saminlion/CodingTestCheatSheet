@@ -1,0 +1,14 @@
+// 투 포인터를 사용하여 연속된 부분 수열의 합이 target인 경우의 수 계산
+
+int left = 0, right = 0;
+int sum = 0, count = 0;
+
+while (right < n) {
+    sum += arr[right++];             // 오른쪽 포인터 증가하며 합에 추가
+
+    while (sum > target)             // 합이 초과되면 왼쪽 포인터를 이동시켜 조절
+        sum -= arr[left++];
+
+    if (sum == target)               // 정확히 target과 같으면 경우의 수 증가
+        count++;
+}

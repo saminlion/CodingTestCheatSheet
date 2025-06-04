@@ -1,52 +1,35 @@
-# Prerequisites
-*.d
+# macOS
+.DS_Store
 
-# Object files
-*.o
-*.ko
-*.obj
-*.elf
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
 
-# Linker output
-*.ilk
-*.map
-*.exp
+# Node.js (사용 시)
+/node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
-# Precompiled Headers
-*.gch
-*.pch
+# Build outputs (Gulp/Webpack 등 사용 시)
+dist/
+build/
+*.log
 
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
+# IDEs/Editors
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
 
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
+# dotenv files
+.env
+.env.*
 
-# Executables
-*.exe
-*.out
-*.app
-*.i*86
-*.x86_64
-*.hex
-
-# Debug files
-*.dSYM/
-*.su
-*.idb
-*.pdb
-
-# Kernel Module Compile Results
-*.mod*
-*.cmd
-.tmp_versions/
-modules.order
-Module.symvers
-Mkfile.old
-dkms.conf
+# 기타 캐시
+.cache/
+*.tmp
+*.bak
+/.history
+Backup.txt

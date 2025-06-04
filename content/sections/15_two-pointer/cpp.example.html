@@ -1,0 +1,32 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    int n = 8, m = 10;
+    vector<int> arr = { 1, 2, 3, 4, 2, 5, 3, 1 };
+
+    int left = 0, right = 0;
+    int sum = 0;     // 현재 구간의 합
+    int count = 0;   // 조건을 만족하는 구간의 개수
+
+    // 오른쪽 포인터를 하나씩 이동하면서 탐색
+    while (right < n) {
+        sum += arr[right++]; // 구간에 오른쪽 값을 포함시키고 포인터 증가
+
+        // 구간 합이 목표보다 크면, 왼쪽 포인터를 오른쪽으로 이동시켜 줄이기
+        while (sum > m) {
+            sum -= arr[left++]; // 왼쪽 값을 빼고 포인터 이동
+        }
+
+        // 구간 합이 정확히 m이면 조건을 만족하므로 count 증가
+        if (sum == m) {
+            count++;
+        }
+    }
+
+    // 결과 출력
+    cout << count << endl;
+
+    return 0;
+}

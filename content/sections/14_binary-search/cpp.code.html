@@ -1,0 +1,19 @@
+// 정렬된 배열에서 target 값을 찾는 이진 탐색 함수
+// 반환: target이 존재하면 해당 인덱스, 없으면 -1
+int BinarySearch(const vector<int>& arr, int target) {
+    int left = 0;                      // 탐색 범위의 왼쪽 경계
+    int right = arr.size() - 1;        // 탐색 범위의 오른쪽 경계
+
+    while (left <= right) {            // 탐색 범위가 유효한 동안 반복
+        int mid = (left + right) / 2;  // 가운데 인덱스 계산
+
+        if (arr[mid] == target)        // 중간 값이 target이면 인덱스 반환
+            return mid;
+        else if (arr[mid] < target)    // 중간 값보다 target이 크면 오른쪽으로 이동
+            left = mid + 1;
+        else                           // 중간 값보다 target이 작으면 왼쪽으로 이동
+            right = mid - 1;
+    }
+
+    return -1; // target을 찾지 못한 경우
+}

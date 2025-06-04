@@ -1,0 +1,24 @@
+// BFS를 이용한 그래프 탐색 예제
+// graph: 인접 리스트 형태로 표현된 그래프
+// visited: 각 노드의 방문 여부를 저장하는 배열
+// start: 탐색 시작 노드
+
+bool[] visited = new bool[n];                     // 방문 여부 배열 초기화
+List<int>[] graph = new List<int>[n];             // 인접 리스트 배열 선언
+for (int i = 0; i < n; i++) graph[i] = new();     // 각 리스트 초기화
+
+Queue<int> queue = new();                         // BFS를 위한 큐 생성
+visited[start] = true;                            // 시작 노드 방문 처리
+queue.Enqueue(start);                             // 큐에 시작 노드 삽입
+
+while (queue.Count > 0) {
+    int current = queue.Dequeue();                // 큐에서 현재 노드를 꺼냄
+
+    // 현재 노드에 연결된 모든 이웃 노드 순회
+    foreach (var next in graph[current]) {
+        if (!visited[next]) {                     // 아직 방문하지 않은 노드인 경우
+            visited[next] = true;                 // 방문 처리
+            queue.Enqueue(next);                  // 큐에 이웃 노드 삽입
+        }
+    }
+}

@@ -1,0 +1,24 @@
+// 입력된 데이터 크기(N)에 따라 사용할 수 있는 알고리즘의 시간 복잡도를 안내하는 예제
+// 입력: 정수 N
+// 출력: N에 적합한 알고리즘 복잡도 등급 안내
+
+using System;
+
+class Program {
+    static void Main() {
+        int N = int.Parse(Console.ReadLine());
+
+        if (N <= 1000) 
+        { 
+            Console.WriteLine("O(N^2) 가능"); 
+        } 
+        else if (N <=1_000_000) 
+        { 
+            Console.WriteLine("O(N log N) 이하만 가능"); 
+        }
+        else
+        {
+            Console.WriteLine("O(N) 또는 O(1) 필요"); 
+        } 
+    } 
+}

@@ -1,0 +1,29 @@
+// 주어진 문자열에서 가장 많이 사용된 알파벳(대소문자 무시)을 출력
+// 단, 가장 많이 사용된 문자가 여러 개일 경우 ? 출력
+
+using System;
+using System.Linq;
+
+class Program {
+    static void Main() {
+        // 입력 문자열을 모두 대문자로 변환 (대소문자 구분 X)
+        string s = Console.ReadLine().ToUpper();
+
+        // 알파벳 개수만큼 배열 생성 (A~Z → 인덱스 0~25)
+        int[] count = new int[26];
+
+        // 각 문자에 대해 빈도수 카운팅
+        foreach (char c in s)
+            count[c - 'A']++; // 'A'를 기준으로 인덱스를 매핑
+
+        // 최댓값(가장 많이 등장한 횟수) 구하기
+        int max = count.Max();
+
+        // 최댓값을 가진 문자의 개수 세기
+        if (count.Count(x => x == max) > 1)
+            Console.WriteLine("?"); // 동점자가 2개 이상일 경우
+        else
+            // 유일한 최댓값 인덱스를 문자로 변환하여 출력
+            Console.WriteLine((char)(Array.IndexOf(count, max) + 'A'));
+    }
+}

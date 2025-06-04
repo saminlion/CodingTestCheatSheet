@@ -1,0 +1,11 @@
+using System.IO;
+
+StreamReader sr = new(Console.OpenStandardInput());
+StreamWriter sw = new(Console.OpenStandardOutput());
+
+int n = int.Parse(sr.ReadLine());
+string[] nums = sr.ReadLine().Split();
+foreach (var x in nums)
+    sw.WriteLine(x);
+
+sw.Close();

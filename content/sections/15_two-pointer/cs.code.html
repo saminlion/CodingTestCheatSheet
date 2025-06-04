@@ -1,0 +1,18 @@
+// 투 포인터(Two Pointers) 알고리즘을 사용하여
+// 연속된 부분 수열 중 합이 target과 같은 경우의 수를 센다.
+
+int left = 0, right = 0;
+int sum = 0;     // 현재 [left, right) 구간의 합
+int count = 0;   // target과 일치하는 구간의 수
+
+while (right < n) {
+    sum += arr[right++];  // 오른쪽 포인터를 확장하며 sum 갱신
+
+    // sum이 target을 초과하면 왼쪽 포인터를 줄이며 조절
+    while (sum > target)
+        sum -= arr[left++];
+
+    // 현재 구간의 합이 정확히 target과 같으면 경우의 수 증가
+    if (sum == target)
+        count++;
+}

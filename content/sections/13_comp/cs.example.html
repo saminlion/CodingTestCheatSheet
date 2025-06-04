@@ -1,0 +1,27 @@
+// 정렬 후 인접한 요소들의 차이를 비교하여 가장 작은 차이를 찾는 예제
+
+using System;
+
+class Program {
+    static void Main() {
+        int n = 5;
+        int[] arr = { 30, 10, 20, 50, 40 };
+
+        // 1. 정렬: 차이는 인접한 값 사이에서만 최소가 될 수 있으므로 정렬 필수
+        Array.Sort(arr); // {10, 20, 30, 40, 50}
+
+        // 2. 최소 차이를 담을 변수 초기화 (충분히 큰 값으로 설정)
+        int minDiff = int.MaxValue;
+
+        // 3. 인접 원소 간 차이를 순회하며 최소 차이 갱신
+        for (int i = 1; i < n; i++) {
+            int diff = arr[i] - arr[i - 1]; // 현재 인접 쌍의 차이
+            if (diff < minDiff) {
+                minDiff = diff; // 더 작은 차이를 발견하면 갱신
+            }
+        }
+
+        // 4. 결과 출력
+        Console.WriteLine(minDiff);
+    }
+}

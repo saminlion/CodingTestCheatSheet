@@ -1,0 +1,38 @@
+// 누적합(Prefix Sum)을 사용하여 여러 구간 합을 빠르게 계산하는 코드
+
+using System;
+
+class Program {
+    static void Main() {
+        // 입력 데이터
+        int n = 5; // 배열의 크기
+        int m = 3; // 구간(쿼리) 개수
+        int[] arr = { 10, 20, 30, 40, 50 };
+
+        // 각 쿼리: [left, right] 형태 (1-based 인덱스 기준)
+        int[,] queries = {
+            { 1, 3 }, // 10 + 20 + 30 = 60
+            { 2, 4 }, // 20 + 30 + 40 = 90
+            { 1, 5 }  // 10 + 20 + 30 + 40 + 50 = 150
+        };
+
+        // 누적합 배열 생성 (0번째는 0으로 고정)
+        int[] prefix = new int[n + 1]; // prefix[i] = arr[0] ~ arr[i-1]까지의 합
+
+        // 누적합 계산
+        for (int i = 1; i <= n; i++) {
+            // 현재까지의 누적합 = 이전 합 + 현재 값
+            prefix[i] = prefix[i - 1] + arr[i - 1];
+        }
+
+        // 각 쿼리에 대해 구간 합 계산 및 출력
+        for (int i = 0; i < m; i++) {
+            int left = queries[i, 0];  // 시작 인덱스 (1-based)
+            int right = queries[i, 1]; // 끝 인덱스 (1-based)
+
+            // [left, right] 구간 합 = prefix[right] - prefix[left - 1]
+            int sum = prefix[right] - prefix[left - 1];
+            Console.WriteLine(sum);
+        }
+    }
+}

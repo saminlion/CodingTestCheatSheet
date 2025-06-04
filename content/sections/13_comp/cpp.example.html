@@ -1,0 +1,28 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <climits>
+using namespace std;
+
+int main() {
+    int n = 5;
+    vector<int> arr = {30, 10, 20, 50, 40};
+
+    // 1. 정렬: 인접한 값 사이에서만 최소 차이가 발생하므로 정렬 필요
+    sort(arr.begin(), arr.end()); // {10, 20, 30, 40, 50}
+
+    // 2. 최소 차이를 저장할 변수 초기화 (충분히 큰 값)
+    int minDiff = INT_MAX;
+
+    // 3. 인접한 원소 간 차이 비교
+    for (int i = 1; i < n; i++) {
+        int diff = arr[i] - arr[i - 1];
+        if (diff < minDiff)
+            minDiff = diff;
+    }
+
+    // 4. 결과 출력
+    cout << minDiff << endl;
+
+    return 0;
+}

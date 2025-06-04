@@ -1,0 +1,39 @@
+// 두 개의 이진수 문자열을 더하여 결과 이진수 문자열로 반환
+// 예: "1010" + "1011" = "10101"
+// 문자열을 뒤에서부터(최하위 비트) 한 자리씩 더하고 carry 처리
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+string AddBinary(string a, string b) {
+    string sb;                // 결과 문자열을 저장할 변수
+    int i = a.length() - 1;   // 문자열 a의 마지막 인덱스
+    int j = b.length() - 1;   // 문자열 b의 마지막 인덱스
+    int carry = 0;            // 자리올림 값
+
+    // a 또는 b의 자리 수가 남아 있거나 carry가 존재하는 동안 반복
+    while (i >= 0 || j >= 0 || carry > 0) {
+        int sum = carry;  // 이전 자리에서 올라온 값
+
+        // a의 현재 자리 수 더함
+        if (i >= 0) sum += a[i--] - '0';
+
+        // b의 현재 자리 수 더함
+        if (j >= 0) sum += b[j--] - '0';
+
+        // 현재 자리에 들어갈 값 추가 (문자 형태)
+        sb.insert(sb.begin(), (sum % 2) + '0');
+
+        // 다음 자리로 넘길 자리올림 계산
+        carry = sum / 2;
+    }
+
+    return sb;
+}
+
+// 호출 예시
+int main() {
+    cout << AddBinary("1010", "1011") << endl; // 출력: 10101
+    return 0;
+}

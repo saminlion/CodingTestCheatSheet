@@ -1,0 +1,29 @@
+// 표준 입력에서 정수 N과 공백으로 구분된 N개의 숫자를 읽고,
+// 각 숫자를 줄 단위로 출력하는 예제
+// 고속 입출력 처리를 위해 StreamReader/StreamWriter 사용
+
+using System;
+using System.IO;
+
+class Program {
+  static void Main() {
+    // 고속 입력: Console.ReadLine()보다 빠르게 입력을 받기 위해 StreamReader 사용
+    StreamReader sr = new(Console.OpenStandardInput());
+
+    // 고속 출력: Console.WriteLine()보다 빠르게 출력하기 위해 StreamWriter 사용
+    StreamWriter sw = new(Console.OpenStandardOutput());
+
+    // 첫 번째 줄: 정수 n 입력 (숫자 개수)
+    int n = int.Parse(sr.ReadLine());
+
+    // 두 번째 줄: 공백으로 구분된 n개의 문자열 입력
+    string[] nums = sr.ReadLine().Split();
+
+    // 각 문자열을 한 줄씩 출력
+    foreach (var x in nums)
+      sw.WriteLine(x);
+
+    // 출력 버퍼를 비우고 종료
+    sw.Close();
+  }
+}

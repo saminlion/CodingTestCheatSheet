@@ -1,0 +1,16 @@
+#include <vector>
+using namespace std;
+
+// DFS(깊이 우선 탐색)를 위한 전역 변수 선언
+vector<vector<int>> graph(n);       // 인접 리스트로 구성된 그래프 (n개의 정점)
+vector<bool> visited(n, false);     // 노드 방문 여부 배열 (false로 초기화)
+
+// DFS 함수 정의
+void DFS(int node) {
+    if (visited[node]) return;       // 이미 방문한 노드면 탐색 종료
+    visited[node] = true;            // 현재 노드를 방문 처리
+
+    for (int next : graph[node]) {   // 현재 노드에 연결된 모든 이웃 순회
+        DFS(next);                   // 재귀 호출을 통해 깊이 우선 탐색
+    }
+}

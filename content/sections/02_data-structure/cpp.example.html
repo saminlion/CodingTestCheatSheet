@@ -1,0 +1,27 @@
+// 주어진 문자열 배열에서 각 단어의 빈도수를 세어 출력하는 예제
+// 입력: 문자열 배열
+// 출력: 각 단어와 해당 단어의 등장 횟수
+
+#include <iostream>
+#include <unordered_map>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+int main() {
+    vector<string> words = { "apple", "banana", "apple", "cherry" };
+    unordered_map<string, int> dict;
+
+    // 각 단어의 빈도수를 딕셔너리에 저장
+    for (const string& word : words) {
+        dict[word]++;  // 존재하지 않으면 0부터 시작
+    }
+
+    // 결과 출력
+    for (const auto& kv : dict) {
+        cout << kv.first << ": " << kv.second << endl;
+    }
+
+    return 0;
+}

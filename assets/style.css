@@ -1,0 +1,123 @@
+body {
+    font-family: 'Pretendard', sans-serif;
+    line-height: 1.6;
+    margin: 40px;
+    background-color: #ffffff;
+    color: #000000;
+}
+
+h1,
+h2 {
+    color: #222;
+}
+
+h2 {
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 4px;
+    margin-top: 40px;
+}
+
+/* ✅ p, strong 스타일 명시적으로 지정 (일관성 유지) */
+p {
+    margin: 0;
+    margin-top: 2%;
+    padding: 0;
+    font-size: 1em;
+    line-height: 1.6;
+}
+
+strong {
+    font-weight: bold;
+}
+
+/* 언어 탭 */
+#language-tabs {
+    margin: 20px 0;
+}
+
+#language-tabs button {
+    margin-right: 8px;
+    padding: 6px 12px;
+    border: none;
+    background: #eee;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#language-tabs button.active {
+    background: #007acc;
+    color: white;
+}
+
+/* 섹션 전체 영역 */
+.section {
+    margin-bottom: 48px;
+}
+
+/* 접기 버튼 */
+.toggle-btn {
+    background: none;
+    border: none;
+    color: #007acc;
+    font-weight: bold;
+    font-size: 1em;
+    line-height: 1.6;
+    cursor: pointer;
+    padding: 0;
+    margin: 4px 0 8px 0;
+    text-align: left;
+    transition: color 0.2s;
+}
+
+.toggle-btn:hover {
+    text-decoration: underline;
+    color: #005a99;
+}
+
+/* 접기 콘텐츠 */
+.foldable {
+    margin-top: 10px;
+}
+
+.fold-content {
+    padding: 8px 12px;
+    background: #f9f9f9;
+    display: none;
+}
+
+/* 코드 블럭 */
+pre {
+    background: #f7f7f7;
+    padding: 12px;
+    /* ✅ 자동 줄바꿈 허용 */
+    white-space: pre-wrap;
+    /* ❌ 가로 스크롤 제거 */
+    overflow-x: hidden;
+    /* ✅ 세로 스크롤 허용 */
+    overflow-y: auto;
+    /* ✅ 최대 높이 제한 (필요시 조정 가능) */
+    max-height: 800px;
+    border-left: 4px solid #007acc;
+    margin: 0 0 12px 0;
+}
+
+pre,
+code {
+    font-family: 'D2Coding', monospace !important;
+    font-size: 0.95em;
+    line-height: 1.6;
+    /* ✅ 줄 간격 증가 */
+    word-break: break-word;
+    /* ✅ 긴 단어 처리 */
+}
+
+/* 인쇄 시 */
+@media print {
+    body {
+        margin: 20mm;
+    }
+
+    h2 {
+        page-break-before: always;
+    }
+}

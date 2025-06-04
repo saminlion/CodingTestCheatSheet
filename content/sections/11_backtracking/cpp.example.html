@@ -1,0 +1,35 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int N = 3; // 전체 숫자 범위 (1~N)
+int M = 2; // 선택할 숫자 개수
+vector<bool> used(N + 1, false); // 각 숫자의 사용 여부를 체크 (1-based index)
+vector<int> path; // 현재 선택한 숫자들을 저장하는 리스트
+
+// 백트래킹을 사용하여 1부터 N까지 숫자 중에서 M개를 중복 없이 선택하는 모든 순열 출력
+void Backtrack(int depth) {
+    // M개를 모두 골랐다면 출력
+    if (depth == M) {
+        for (int i = 0; i < path.size(); i++) {
+            cout << path[i] << (i + 1 == path.size() ? '\n' : ' ');
+        }
+        return;
+    }
+
+    // 1부터 N까지의 수 중에서 아직 사용하지 않은 수를 선택
+    for (int i = 1; i <= N; i++) {
+        if (used[i]) continue;     // 이미 사용한 수는 건너뜀
+
+        used[i] = true;            // i를 사용한다고 표시
+        path.push_back(i);         // 현재 순열 경로에 추가
+        Backtrack(depth + 1);      // 다음 위치(depth)로 재귀 호출
+        path.pop_back();           // 마지막에 넣은 수를 제거 (백트래킹)
+        used[i] = false;           // i를 다시 사용할 수 있도록 초기화
+    }
+}
+
+int main() {
+    Backtrack(0); // depth 0부터 시작
+    return 0;
+}

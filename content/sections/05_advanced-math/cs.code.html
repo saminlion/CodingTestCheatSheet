@@ -1,0 +1,47 @@
+// 최대공약수 (유클리드 호제법)
+int GCD(int a, int b) => b == 0 ? a : GCD(b, a % b);
+
+// 최소공배수
+int LCM(int a, int b) => a * b / GCD(a, b);
+
+// 소수 판별
+bool IsPrime(int n) {
+    if (n <= 1) return false;
+    for (int i = 2; i * i <= n; i++) {
+        if (n % i == 0) return false;
+    }
+    return true;
+}
+
+// 소인수 분해
+List<int> PrimeFactors(int n) {
+    var list = new List<int>();
+    for (int i = 2; i * i <= n; i++) {
+        while (n % i == 0) {
+            list.Add(i);
+            n /= i;
+        }
+    }
+    if (n > 1) list.Add(n);
+    return list;
+}
+
+// 진법 변환 (10진수 -> N진수)
+string ToBaseN(int n, int b) {
+    if (n == 0) return "0";
+    string digits = "0123456789ABCDEF";
+    string result = "";
+    while (n > 0) {
+        result = digits[n % b] + result;
+        n /= b;
+    }
+    return result;
+}
+
+// 분수 덧셈 후 기약 분수 반환
+int[] AddFractions(int numer1, int denom1, int numer2, int denom2) {
+    int lcm = LCM(denom1, denom2);
+    int resultNumer = numer1 * (lcm / denom1) + numer2 * (lcm / denom2);
+    int gcd = GCD(resultNumer, lcm);
+    return new int[] { resultNumer / gcd, lcm / gcd };
+}

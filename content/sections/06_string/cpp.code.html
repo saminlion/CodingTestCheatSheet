@@ -1,0 +1,22 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+
+// 문자 배열 변환
+std::vector<char> chars(s.begin(), s.end());
+
+// 부분 문자열 추출 (인덱스 1부터 2개)
+std::string sub = s.substr(1, 2);
+
+// 문자열 치환: 'L' → 'X'
+std::string replaced = s;
+std::replace(replaced.begin(), replaced.end(), 'L', 'X');
+
+// 대문자 변환
+std::string upper = s;
+std::transform(upper.begin(), upper.end(), upper.begin(), ::toupper);
+
+// 소문자 변환
+std::string lower = s;
+std::transform(lower.begin(), lower.end(), lower.begin(), ::tolower);
