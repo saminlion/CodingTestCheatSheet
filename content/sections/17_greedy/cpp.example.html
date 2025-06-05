@@ -1,0 +1,22 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    // 사용할 동전 단위 (내림차순 정렬되어 있어야 그리디 적용 가능)
+    vector<int> coins = {500, 100, 50, 10};
+
+    int target = 1260; // 거슬러줘야 할 금액
+    int count = 0;     // 사용한 동전 개수
+
+    // 큰 단위 동전부터 차례대로 최대한 사용
+    for (int coin : coins) {
+        count += target / coin; // 현재 동전으로 사용할 수 있는 개수만큼 추가
+        target %= coin;         // 나머지 금액을 다음 동전 단위로 처리
+    }
+
+    // 결과 출력
+    cout << count << endl;
+
+    return 0;
+}

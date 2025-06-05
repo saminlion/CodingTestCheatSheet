@@ -1,0 +1,57 @@
+// 다익스트라 알고리즘을 사용하여 0번 정점에서 각 정점까지의 최단 거리 계산
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+class Program {
+    const int INF = int.MaxValue;
+
+    static void Main() {
+        int n = 6; // 정점 수
+        int[,] inputEdges = {
+            { 0, 1, 2 },
+            { 0, 2, 5 },
+            { 1, 2, 1 },
+            { 2, 3, 3 }
+        };
+
+        // 그래프 초기화 (인접 리스트)
+        List&lt;(int to, int weight)&gt;[] graph = new List&lt;(int, int)&gt;[n];
+        for (int i = 0; i &lt; n; i++) graph[i] = new List&lt;(int, int)&gt;();
+        for (int i = 0; i &lt; inputEdges.GetLength(0); i++) {
+            int from = inputEdges[i, 0];
+            int to = inputEdges[i, 1];
+            int weight = inputEdges[i, 2];
+            graph[from].Add((to, weight)); // 방향 그래프
+        }
+
+        int start = 0;
+        int[] dist = Enumerable.Repeat(INF, n).ToArray();
+        dist[start] = 0;
+
+        // 우선순위 큐: (노드, 거리), 거리 기준 오름차순
+        var pq = new PriorityQueue&lt;(int node, int cost), int&gt;();
+        pq.Enqueue((start, 0), 0);
+
+        while (pq.Count &gt; 0) {
+            var (cur, cost) = pq.Dequeue();
+
+            // 이미 더 짧은 거리로 방문한 경우 스킵
+            if (dist[cur] &lt; cost) continue;
+
+            foreach (var (next, weight) in graph[cur]) {
+                int nextDist = cost + weight;
+                if (nextDist &lt; dist[next]) {
+                    dist[next] = nextDist;
+                    pq.Enqueue((next, nextDist), nextDist);
+                }
+            }
+        }
+
+        // 결과 출력
+        for (int i = 0; i &lt; n; i++) {
+            Console.WriteLine(dist[i] == INF ? "INF" : dist[i].ToString());
+        }
+    }
+}

@@ -1,0 +1,33 @@
+// 동적 계획법(DP)을 이용해 n번째 계단에 도달하는 방법의 수를 구하는 예제 (Bottom-Up 방식)
+
+using System;
+
+class Program {
+    static void Main() {
+        int n = 5; // 목표 계단
+
+        // 계단 수가 0 또는 1일 때는 경우의 수를 직접 정의
+        if (n == 0) {
+            Console.WriteLine(0);
+            return;
+        }
+        if (n == 1) {
+            Console.WriteLine(1);
+            return;
+        }
+
+        // DP 배열 생성: dp[i]는 i번째 계단에 도달하는 방법의 수
+        int[] dp = new int[n + 1];
+        dp[0] = 1; // 0칸에서 시작하는 경우 (기저 조건)
+        dp[1] = 1; // 첫 번째 계단으로 가는 경우의 수는 1
+
+        // 점화식: dp[i] = dp[i - 1] + dp[i - 2]
+        // → i번째 계단은 한 칸 전(dp[i-1]) 또는 두 칸 전(dp[i-2])에서 올 수 있음
+        for (int i = 2; i <= n; i++) {
+            dp[i] = dp[i - 1] + dp[i - 2];
+        }
+
+        // 결과 출력
+        Console.WriteLine(dp[n]);
+    }
+}

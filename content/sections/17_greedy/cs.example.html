@@ -1,0 +1,20 @@
+// 그리디 알고리즘을 사용하여 최소 개수의 동전으로 금액을 만드는 예제
+
+using System;
+
+class Program {
+    static void Main() {
+        int[] coins = { 500, 100, 50, 10 }; // 큰 동전부터 정렬된 배열
+        int target = 1260;  // 목표 금액
+        int count = 0;      // 사용한 동전 개수
+
+        // 큰 동전부터 차례로 사용하며 남은 금액을 줄여감
+        foreach (var coin in coins) {
+            count += target / coin; // 해당 동전을 최대한 사용
+            target %= coin;         // 남은 금액 갱신
+        }
+
+        // 결과 출력
+        Console.WriteLine(count);
+    }
+}

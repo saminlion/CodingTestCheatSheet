@@ -1,0 +1,54 @@
+using System;
+
+class UnionFind {
+    int[] parent; // 각 노드의 부모 정보를 저장하는 배열
+
+    // 생성자: n개의 노드가 있을 때, 각각을 자기 자신이 대표가 되도록 초기화
+    public UnionFind(int n) {
+        // n+1 크기의 배열을 만드는 이유: 1번부터 n번까지 사용하기 위해서
+        parent = new int[n + 1];
+
+        // 모든 노드의 부모를 자기 자신으로 설정
+        for (int i = 0; i <= n; i++) {
+            parent[i] = i;
+        }
+    }
+
+    // Find 함수: x가 어떤 집합(그룹)에 속해 있는지를 찾아주는 함수
+    // x의 '대표 노드'를 찾아서 반환함
+    // 이 과정에서 경로 압축도 수행함 (중간 노드들을 대표 노드로 연결)
+    public int Find(int x) {
+        // 만약 x의 부모가 자기 자신이 아니라면,
+        if (parent[x] != x) {
+            // x의 부모를 재귀적으로 찾아서 대표 노드를 구하고,
+            // 그 대표 노드로 parent[x]를 업데이트함 (경로 압축)
+            parent[x] = Find(parent[x]);
+        }
+
+        // x의 최종 대표 노드를 반환
+        return parent[x];
+    }
+
+    // Union 함수: 두 노드 a, b를 같은 집합으로 묶어주는 함수
+    public void Union(int a, int b) {
+        // a의 대표 노드를 찾음
+        int rootA = Find(a);
+
+        // b의 대표 노드를 찾음
+        int rootB = Find(b);
+
+        // 만약 대표 노드가 서로 다르다면 → 즉 다른 집합에 있다면
+        if (rootA != rootB) {
+            // 한 쪽을 다른 쪽의 부모로 만들어 집합을 합침
+            // 여기서는 b 집합을 a 집합에 흡수하는 형태
+            parent[rootB] = rootA;
+        }
+        // (같은 집합이면 아무것도 하지 않음)
+    }
+
+    // 두 노드가 같은 집합에 속해 있는지 확인하는 함수
+    public bool IsConnected(int a, int b) {
+        // 둘의 대표 노드를 비교해서 같으면 같은 집합임
+        return Find(a) == Find(b);
+    }
+}

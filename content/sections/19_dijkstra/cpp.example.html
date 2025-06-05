@@ -1,0 +1,60 @@
+#include <iostream>
+#include <vector>
+#include <queue>
+#include <limits>
+using namespace std;
+
+const int INF = numeric_limits<int>::max(); // 무한대를 표현하는 값
+
+int main() {
+    int n = 6; // 정점 수
+
+    // 간선 정보: (출발, 도착, 가중치)
+    vector<tuple<int, int, int>> inputEdges = {
+        {0, 1, 2},
+        {0, 2, 5},
+        {1, 2, 1},
+        {2, 3, 3}
+    };
+
+    // 그래프 초기화: 각 노드에 연결된 (도착 노드, 가중치) 리스트 저장
+    vector<vector<pair<int, int>>> graph(n);
+    for (auto [from, to, weight] : inputEdges) {
+        graph[from].emplace_back(to, weight); // 방향 그래프
+    }
+
+    int start = 0; // 시작 노드
+    vector<int> dist(n, INF); // 시작점에서 각 노드까지의 거리 배열
+    dist[start] = 0; // 시작점은 거리 0
+
+    // 우선순위 큐: (거리, 노드) 순으로 저장 (작은 거리 우선)
+    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<>> pq;
+    pq.emplace(0, start); // 시작 노드 삽입
+
+    while (!pq.empty()) {
+        auto [cost, cur] = pq.top();
+        pq.pop();
+
+        // 이미 더 짧은 거리로 방문한 적이 있다면 건너뜀
+        if (dist[cur] < cost) continue;
+
+        // 현재 노드에서 연결된 이웃 노드 탐색
+        for (auto [next, weight] : graph[cur]) {
+            int nextDist = cost + weight;
+            if (nextDist < dist[next]) {
+                dist[next] = nextDist;          // 거리 갱신
+                pq.emplace(nextDist, next);     // 큐에 삽입
+            }
+        }
+    }
+
+    // 최단 거리 결과 출력
+    for (int i = 0; i < n; ++i) {
+        if (dist[i] == INF)
+            cout << "INF\n";
+        else
+            cout << dist[i] << '\n';
+    }
+
+    return 0;
+}

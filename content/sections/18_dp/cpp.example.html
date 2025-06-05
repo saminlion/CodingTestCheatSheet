@@ -1,0 +1,33 @@
+// 동적 계획법(DP)을 이용해 n번째 계단에 도달하는 방법의 수를 구하는 예제 (Bottom-Up 방식)
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    int n = 5; // 목표 계단 수
+
+    // 계단 수가 0일 경우 방법 없음, 1일 경우 한 가지
+    if (n == 0) {
+        cout << 0 << endl;
+        return 0;
+    }
+    if (n == 1) {
+        cout << 1 << endl;
+        return 0;
+    }
+
+    // dp[i]는 i번째 계단에 도달하는 방법의 수
+    vector<int> dp(n + 1);
+    dp[0] = 1; // 시작점 (0칸일 때 1가지 방법)
+    dp[1] = 1; // 1칸은 1가지 방법
+
+    // 점화식: dp[i] = dp[i - 1] + dp[i - 2]
+    // → 한 칸 또는 두 칸 전에서 도달 가능
+    for (int i = 2; i <= n; ++i) {
+        dp[i] = dp[i - 1] + dp[i - 2];
+    }
+
+    cout << dp[n] << endl; // 결과 출력
+    return 0;
+}
